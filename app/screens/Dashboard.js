@@ -96,6 +96,35 @@ const Dashboard = ({ navigation }) => {
   </View>
 </Card>
 
+<<<<<<< HEAD
+=======
+      <Card containerStyle={styles.card}>
+        <Text style={styles.cardTitle}>Fitness Programs</Text>
+        <Text>View and select fitness programs or plans.</Text>
+        {/* List of available fitness programs with images and descriptions */}
+      </Card>
+      <Card containerStyle={styles.card}>
+        <Text style={styles.cardTitle}>Water Consumption</Text>
+        <Text>Today's water intake: 8 cups (64 oz).</Text>
+        <Button
+          title="Log Water Intake"
+          onPress={() => {
+            // Add logic to log water intake
+          }}
+        />
+      </Card>
+      <Card containerStyle={styles.card}>
+        <Text style={styles.cardTitle}>Steps Tracker</Text>
+        <Text>Today's steps: 3000.</Text>
+        <Button
+          title="Track Steps"
+          onPress={() => {
+            // Add logic to log water intake
+            navigation.navigate('Step');
+          }}
+        />
+      </Card>
+>>>>>>> 7d76ff1a0f32a0d1fb8f4c276450636ad4e37ddc
       </SafeAreaView>
     </ScrollView>
   );

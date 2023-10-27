@@ -5,7 +5,7 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import WelcomeScreen from "./app/screens/Welcome";
 import Dashboard from "./app/screens/Dashboard";
 import Home from "./app/screens/Home";
-
+import Step from "./app/screens/Step";
 import { Provider } from 'react-redux';
 
 import store from './app/redux/store';
@@ -34,6 +34,13 @@ export default function App() {
         <Stack.Screen
           name="Home"
           component={Home}
+          options={{
+            headerShown: false,
+          }}
+        />
+        <Stack.Screen
+          name="Step"
+          component={Step}
           options={{
             headerShown: false,
           }}
