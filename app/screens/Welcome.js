@@ -4,7 +4,7 @@ import React from 'react';
 import { View, Image, Text, StyleSheet, Button } from 'react-native';
 // import { Button } from 'react-native';
 
-const WelcomeScreen = () => {
+const WelcomeScreen = ({navigation}) => {
   return (
     <View style={styles.container}>
       <Image
@@ -18,7 +18,7 @@ const WelcomeScreen = () => {
         buttonStyle={styles.button}
         onPress={() => {
           // Handle button press (navigate to the next screen, for example)
-
+            navigation.navigate('Dashboard');
         }}
       />
     </View>
