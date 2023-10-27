@@ -1,18 +1,28 @@
 // FitnessDashboard.js
 
 import React from 'react';
-import { View, Text, StyleSheet, ScrollView, Image, SafeAreaView } from 'react-native';
+import { View, Text, StyleSheet, ScrollView, Image, SafeAreaView, TouchableOpacity } from 'react-native';
 import { Card, Button } from 'react-native-elements';
+import Icon from 'react-native-ionicons'
+import { Ionicons } from '@expo/vector-icons';
 
 const Dashboard = ({ navigation }) => {
   return (
     <ScrollView style={styles.container}>
         <SafeAreaView>
         <View style = {styles.header}>
+            <TouchableOpacity onPress={navigation.navigate('Home')}>
             <Image  source={require('../../assets/Welcome.jpg')} style={styles.profileImage} />
+            </TouchableOpacity>
             <View style = {styles.userInfo}>
                 <Text style = {styles.userEmail}>Hello, Welcome</Text>
                 <Text style = {styles.userName}>John Doe</Text>
+                {/* <Icon name ='notifications'></Icon> */}
+                {/* <Ionicons name='notifications' style={styles.bell}></Ionicons> */}
+                <View style={styles.bellIconContainer}>
+          <Ionicons name='notifications' style={styles.bell} />
+        </View>
+                {/* <ion-icon name="notifications-outline"></ion-icon> */}
             </View>
 
         </View>
@@ -29,7 +39,7 @@ const Dashboard = ({ navigation }) => {
           title="Start Workout"
           onPress={() => {
             // Navigate to the workout screen when the button is pressed
-            navigation.navigate('Workout');
+            navigation.navigate('Home');
           }}
         />
       </Card>
@@ -44,6 +54,16 @@ const Dashboard = ({ navigation }) => {
         <Text style={styles.cardTitle}>Fitness Programs</Text>
         <Text>View and select fitness programs or plans.</Text>
         {/* List of available fitness programs with images and descriptions */}
+      </Card>
+      <Card containerStyle={styles.card}>
+        <Text style={styles.cardTitle}>Water Consumption</Text>
+        <Text>Today's water intake: 8 cups (64 oz).</Text>
+        <Button
+          title="Log Water Intake"
+          onPress={() => {
+            // Add logic to log water intake
+          }}
+        />
       </Card>
       </SafeAreaView>
     </ScrollView>
@@ -63,6 +83,7 @@ const styles = StyleSheet.create({
       backgroundColor: 'white',
       borderBottomWidth: 1,
       borderBottomColor: '#e0e0e0',
+      width:'100%'
     },
     profileImage: {
       width: 80,
@@ -87,6 +108,14 @@ const styles = StyleSheet.create({
         fontSize: 18,
         fontWeight: 'bold',
       },
+      bell:{
+        fontSize:20,
+      },
+      bellIconContainer: {
+        position: 'absolute',
+        right: 0,
+        top: 15,
+      }
     });
 
 export default Dashboard;
