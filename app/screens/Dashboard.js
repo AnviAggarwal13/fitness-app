@@ -1,12 +1,34 @@
 // FitnessDashboard.js
 
 import React from 'react';
-import { View, Text, StyleSheet, ScrollView, Image, SafeAreaView, TouchableOpacity } from 'react-native';
+import { View, Text, StyleSheet, ScrollView, Image, SafeAreaView, TouchableOpacity ,TextInput} from 'react-native';
 import { Card, Button } from 'react-native-elements';
 import Icon from 'react-native-ionicons'
 import { Ionicons } from '@expo/vector-icons';
+import   { useState, useEffect } from 'react';
+// import {
+//   AsyncStorage,
+// } from 'react-native';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const Dashboard = ({ navigation }) => {
+  const [fitnessGoals, setFitnessGoals] = useState('');
+  const [waterGlasses, setWaterGlasses] = useState(0);
+
+
+  const incrementWaterIntake = () => {
+    setWaterGlasses(waterGlasses + 1);
+    // Save water intake to AsyncStorage
+    AsyncStorage.setItem('waterIntake', (waterGlasses + 1).toString());
+  };
+  
+  const decrementWaterIntake = () => {
+    if (waterGlasses > 0) {
+      setWaterGlasses(waterGlasses - 1);
+      // Save water intake to AsyncStorage
+      AsyncStorage.setItem('waterIntake', (waterGlasses - 1).toString());
+    }
+  };
   return (
     <ScrollView style={styles.container}>
         <SafeAreaView>
@@ -43,26 +65,37 @@ const Dashboard = ({ navigation }) => {
       </Card>
 
       <Card containerStyle={styles.card}>
-        <Text style={styles.cardTitle}>Your Goals</Text>
-        <Text>Your fitness goals and progress towards them.</Text>
-        {/* Add charts or progress bars to visualize goals and progress */}
-      </Card>
+  <Text style={styles.cardTitle}>Your Goals</Text>
+  <Text>Your fitness goals and progress towards them.</Text>
+  <TextInput
+    style={styles.inputBox}
+    placeholder="Enter your fitness goals"
+    value={fitnessGoals}
+    onChangeText={(text) => setFitnessGoals(text)}
+  />
+  <Button
+    title="Save Goals"
+    onPress={() => { 
+      AsyncStorage.setItem('fitnessGoals', fitnessGoals);
+    }}
+  />
+</Card>
 
-      <Card containerStyle={styles.card}>
-        <Text style={styles.cardTitle}>Fitness Programs</Text>
-        <Text>View and select fitness programs or plans.</Text>
-        {/* List of available fitness programs with images and descriptions */}
-      </Card>
-      <Card containerStyle={styles.card}>
-        <Text style={styles.cardTitle}>Water Consumption</Text>
-        <Text>Today's water intake: 8 cups (64 oz).</Text>
-        <Button
-          title="Log Water Intake"
-          onPress={() => {
-            // Add logic to log water intake
-          }}
-        />
-      </Card>
+
+<Card containerStyle={styles.card}>
+  <Text style={styles.cardTitle}>Water Consumption</Text>
+  <Text>Today's water intake: {waterGlasses}/8 glasses (64 oz).</Text>
+  <View style={styles.waterButtons}>
+    <TouchableOpacity onPress={decrementWaterIntake}>
+      <Text style={styles.buttonText}>-</Text>
+    </TouchableOpacity>
+    <Text style={styles.glassesText}>{waterGlasses}/8</Text>
+    <TouchableOpacity onPress={incrementWaterIntake}>
+      <Text style={styles.buttonText}>+</Text>
+    </TouchableOpacity>
+  </View>
+</Card>
+
       </SafeAreaView>
     </ScrollView>
   );
@@ -114,6 +147,28 @@ const styles = StyleSheet.create({
         right: 0,
         top: 15,
       }
+
+      ,
+      inputBox: {
+        borderWidth: 1,
+        borderColor: '#ccc',
+        padding: 10,
+        marginTop: 10,
+      },
+      waterButtons: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        justifyContent: 'space-between',
+        marginTop: 10,
+      },
+      buttonText: {
+        fontSize: 24,
+        fontWeight: 'bold',
+      },
+      glassesText: {
+        fontSize: 18,
+        fontWeight: 'bold',
+      },
     });
 
 export default Dashboard;

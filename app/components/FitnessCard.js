@@ -4,6 +4,7 @@ import fitness from "../data/fitness";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
 
+
 const FitnessCard = () => {
   const FitnessData = fitness;
   const navigation = useNavigation();
