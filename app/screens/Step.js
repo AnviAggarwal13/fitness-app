@@ -3,7 +3,7 @@ import React, { useState, useEffect } from "react";
 
 import { View, Text, StyleSheet, Image } from "react-native";
 import { Accelerometer } from "expo-sensors";
-import FastImage from "react-native-fast-image";
+// import FastImage from "react-native-fast-image";
 
 const Step = () => {
   const [subscription, setSubscription] = useState(null);

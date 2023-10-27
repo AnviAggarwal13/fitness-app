@@ -63,6 +63,17 @@ const Dashboard = ({ navigation }) => {
           }}
         />
       </Card>
+      <Card containerStyle={styles.card}>
+        <Text style={styles.cardTitle}>Steps Tracker</Text>
+        <Text>Today's steps: 3000.</Text>
+        <Button
+          title="Track Steps"
+          onPress={() => {
+            // Add logic to log water intake
+            navigation.navigate('Step');
+          }}
+        />
+      </Card>
       </SafeAreaView>
     </ScrollView>
   );
