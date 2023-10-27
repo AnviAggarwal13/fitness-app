@@ -10,10 +10,8 @@ const Dashboard = ({ navigation }) => {
   return (
     <ScrollView style={styles.container}>
         <SafeAreaView>
-        <View style = {styles.header}>
-            <TouchableOpacity onPress={navigation.navigate('Home')}>
-            <Image  source={require('../../assets/Welcome.jpg')} style={styles.profileImage} />
-            </TouchableOpacity>
+        <View style = {styles.header}> 
+            <Image  source={require('../../assets/Welcome.jpg')} style={styles.profileImage} /> 
             <View style = {styles.userInfo}>
                 <Text style = {styles.userEmail}>Hello, Welcome</Text>
                 <Text style = {styles.userName}>John Doe</Text>

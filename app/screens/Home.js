@@ -1,17 +1,12 @@
 import { StyleSheet, Text, View, SafeAreaView, Image,ScrollView } from "react-native";
 import React ,{useContext} from "react";
-import FitnessCard from "../components/FitnessCard";
-import { FitnessItems } from "../../Context";
+import FitnessCard from "../components/FitnessCard"; 
+import { useDispatch, useSelector } from "react-redux";
 
-const Home = () => {
-  const {
-   
-    minutes=0,
-  
-    calories=0,
-
-    workout=0,
-  } = useContext(FitnessItems);
+const Home = () => {   
+  const calories = useSelector((state) => state.workout.totalCalories);
+  const minutes = useSelector((state) => state.workout.totalMinutes);
+  const workout = useSelector((state) => state.workout.totalWorkouts);
   return (
     <ScrollView style={{marginTop:40}}>
       <View

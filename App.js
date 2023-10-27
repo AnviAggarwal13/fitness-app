@@ -5,10 +5,16 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import WelcomeScreen from "./app/screens/Welcome";
 import Dashboard from "./app/screens/Dashboard";
 import Home from "./app/screens/Home";
+
+import { Provider } from 'react-redux';
+
+import store from './app/redux/store';
+
 const Stack = createNativeStackNavigator();
 
 export default function App() {
   return (
+    <Provider store={store}>
     <NavigationContainer style= {styles.container}>
       <Stack.Navigator>
         <Stack.Screen
@@ -34,6 +40,7 @@ export default function App() {
         />
       </Stack.Navigator>
     </NavigationContainer>
+    </Provider>
   );
 }
 
